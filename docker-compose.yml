@@ -1,14 +1,14 @@
 version: '3'
 
 services:
-#  site:
-#    container_name: site
-#    image: app:latest
-#    restart: always
-#    ports:
-#      - 5000:5000
-#    environment:
-#      APP_NAME: "Welcome to tsobu api"
+  site:
+    container_name: site
+    image: app:latest
+    restart: always
+    ports:
+      - 5000:5000
+    environment:
+      APP_NAME: "Welcome to tsobu api"
 
   fuelrod:
     container_name: fuelrod
@@ -40,7 +40,7 @@ services:
       - 80:80
       - 443:443
     links:
-#      - site:site
+      - site:site
       - fuelrod:fuelrod
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
