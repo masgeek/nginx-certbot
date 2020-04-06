@@ -9,6 +9,25 @@ services:
       - 5000:5000
     environment:
       APP_NAME: "Welcome to tsobu api"
+
+  fuelrod:
+    container_name: fuelrod
+    image: tsobu/fuelrod-api:latest
+    restart: always
+    #    depends_on:
+    #      - nginx
+    ports:
+      - 9000:9000
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - DATABASE_URL=${CROP_DATABASE_URL}
+      - DATABASE_USERNAME=${CROP_DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${CROP_DATABASE_PASSWORD}
+      - DEMO_MODE=${DEMO_MODE}
+      - VERIFY_CERT=${VERIFY_CERT}
+      - MS_WEBHOOK=${MS_WEBHOOK}
+      - SMS_SERVICE=${SMS_SERVICE}
+
   nginx:
     image: nginx:1.15-alpine
     restart: unless-stopped
